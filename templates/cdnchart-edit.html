@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+
+{% block stylesheets %}
+    <!--bootstrap-fileinput-master-->
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-fileinput-master/css/fileinput.css" />
+
+    <!--bootstrap picker-->
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-datepicker/css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-datetimepicker/css/datetimepicker.css"/>
+
+
+
+
+{% endblock %}
+
+{% block page_head %}
+    <!-- page head start-->
+    <div class="page-head">
+                <h3 class="m-b-less">
+                    新建数据
+                </h3>
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+                <div class="state-information">
+                    <ol class="breadcrumb m-b-less bg-less">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">CDN数据</a></li>
+                        <li class="active">新建数据</li>
+                    </ol>
+                </div>
+            </div>
+    <!-- page head end-->
+{% endblock %}
+
+{% block main_content %}
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        CDN信息
+                    </header>
+                    <div class="panel-body">
+                        <form action="{{ url_for('chart.save_edit') }}" method="post" class="form-horizontal dropzone"  role="form" >
+                            <div class="form-group">
+                                <label for="cdnname" class="col-lg-2 col-sm-2 control-label">运营商</label>
+                                <div class="col-lg-3">
+                                    <input type="text" class="form-control" id="cdnname" name="cdnname" placeholder="" value="{{ cdninfo[1] }}">
+                                    <input type="hidden" id = "rowid" name="rowid" value="{{ cdninfo[0] }}" >
+                                    <p class="help-block"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 col-sm-2 control-label">日期</label>
+                                <div class="col-lg-3">
+                                    <div data-date-viewmode="years" data-date-format="yyyy-mm"   class="input-append date dpYears">
+                                        <input type="text" readonly="" value="{{ cdninfo[2] }}" size="16" class="form-control" id="datetime" name="datetime">
+                                        <span class="input-group-btn add-on"><button class="btn btn-primary" type="button"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div><span class="help-block"></span>
+                                </div>
+                            </div>
+{#                               StartTime#}
+                            <div class="form-group">
+                                <label for="price" class="col-lg-2 col-sm-2 control-label">账单费用</label>
+                                <div class="col-lg-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">￥</span>
+                                        <input type="text" class="form-control" id="price" name="price" value="{{ cdninfo[3] }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price" class="col-lg-2 col-sm-2 control-label">95值</label>
+                                <div class="col-lg-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">M</span>
+                                        <input type="text" class="form-control" id="nightfive" name="nightfive" value="{{ cdninfo[4] }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="col-lg-2 col-sm-2 control-label"></label>
+                                <div class="checkbox col-lg-3">
+                                    <label >
+                                      <input type="checkbox" id="state" name="state" {{ 'checked="checked"' if cdninfo[5] == 'on' }}>支付情况
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary">提交</button>
+                                    <input type="reset" class="btn btn-default" value="重置">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scritps %}
+<!--bootstrap-fileinput-master-->
+<script type="text/javascript" src="/js/bootstrap-fileinput-master/js/fileinput.js"></script>
+<script type="text/javascript" src="/js/file-input-init.js"></script>
+
+
+
+<!--bootstrap picker-->
+<script type="text/javascript" src="/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+
+<!--picker initialization-->
+<script src="/js/picker-init.js"></script>
+<!--common scripts for all pages-->
+{#<script src="/js/scripts.js"></script>#}
+
+
+
+
+{% endblock %}

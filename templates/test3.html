@@ -1,0 +1,165 @@
+{% extends 'index.html' %}
+
+
+{% block stylesheets %}
+<!--right slidebar-->
+    <link href="/css/slidebars.css" rel="stylesheet">
+
+    <!--switchery-->
+    <link href="/js/switchery/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!--Morris Chart -->
+    <link rel="stylesheet" href="/js/morris-chart/morris.css">
+
+    <!--common style-->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+
+    {#  chartkick  #}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['treemap']});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
+          ['Global',    null,                 0,                               0],
+          ['听云',       'Global',             0,                               0],
+          ['America',   'Global',             0,                               0],
+          ['Europe',    'Global',             0,                               0],
+          ['app',       '听云',             1,                               4],
+          ['ba',       '听云',             1,                               4],
+          ['web',       '听云',             1,                               4],
+          ['Asia',      'Global',             0,                               0],
+          ['Australia', 'Global',             0,                               0],
+          ['Africa',    'Global',             0,                               0],
+
+          ['Brazil',    'America',            11,                              10],
+          ['USA',       'America',            52,                              31],
+          ['Mexico',    'America',            24,                              12],
+          ['Canada',    'America',            16,                              -23],
+          ['France',    'Europe',             42,                              -11],
+          ['Germany',   'Europe',             31,                              -2],
+          ['Sweden',    'Europe',             22,                              -13],
+          ['Italy',     'Europe',             17,                              4],
+          ['UK',        'Europe',             21,                              -5],
+          ['China',     'Asia',               36,                              4],
+          ['Japan',     'Asia',               20,                              -12],
+          ['India',     'Asia',               40,                              63],
+          ['Laos',      'Asia',               4,                               34],
+          ['Mongolia',  'Asia',               1,                               -5],
+          ['Israel',    'Asia',               12,                              24],
+          ['Iran',      'Asia',               18,                              13],
+          ['Pakistan',  'Asia',               11,                              -52],
+          ['Egypt',     'Africa',             21,                              0],
+          ['S. Africa', 'Africa',             30,                              43],
+          ['Sudan',     'Africa',             12,                              2],
+          ['Congo',     'Africa',             10,                              12],
+          ['Zaire',     'Africa',             8,                               10]
+        ]);
+
+        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
+
+        tree.draw(data, {
+          minColor: '#f00',
+          midColor: '#ddd',
+          maxColor: '#0d0',
+          headerHeight: 20,
+          fontColor: 'black',
+          showScale: true
+        });
+
+      }
+    </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block page_head %}
+<!-- page head start-->
+            <div class="page-head">
+                <h3 class="m-b-less">
+                    表单查询
+                </h3>
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+                <div class="state-information">
+                    <ol class="breadcrumb m-b-less bg-less">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">图表查询</a></li>
+                        <li class="active">表单查询</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- page head end-->
+{% endblock %}
+
+{% block main_content %}
+<!--body wrapper start-->
+
+            <div class="wrapper">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="panel" >
+                            <header class="panel-heading">
+                                CDN支出
+                                <span class="tools pull-right">
+                                    <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
+                                    <a class="t-collapse fa fa-chevron-down" href="javascript:;"></a>
+                                    <a class="t-close fa fa-times" href="javascript:;"></a>
+                                </span>
+                            </header>
+                            <div class="panel-body">
+                                <div id="chart_div" style="width: 900px; height: 500px;"></div>
+                            </div>
+
+                        </section>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+<!--body wrapper end-->
+{% endblock %}
+
+{% block scritps %}
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="/js/jquery-1.10.2.min.js"></script>
+<script src="/js/jquery-migrate.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/modernizr.min.js"></script>
+
+<!--Nice Scroll-->
+<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="/js/slidebars.min.js"></script>
+
+<!--switchery-->
+<script src="/js/switchery/switchery.min.js"></script>
+<script src="/js/switchery/switchery-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="/js/sparkline/jquery.sparkline.js"></script>
+<script src="/js/sparkline/sparkline-init.js"></script>
+
+<!--Morris Chart-->
+<script src="/js/morris-chart/morris.js"></script>
+<script src="/js/morris-chart/raphael-min.js"></script>
+
+<!--morris chart initialization-->
+<script src="/js/morris-init.js"></script>
+
+
+{% endblock %}

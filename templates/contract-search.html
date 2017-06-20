@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+
+{% block stylesheets %}
+    <!--bootstrap-fileinput-master-->
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-fileinput-master/css/fileinput.css" />
+
+    <!--bootstrap picker-->
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-datepicker/css/datepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap-datetimepicker/css/datetimepicker.css"/>
+
+
+
+
+{% endblock %}
+
+{% block page_head %}
+    <!-- page head start-->
+    <div class="page-head">
+                <h3 class="m-b-less">
+                    创建合同
+                </h3>
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+                <div class="state-information">
+                    <ol class="breadcrumb m-b-less bg-less">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">合同管理</a></li>
+                        <li class="active">创建合同</li>
+                    </ol>
+                </div>
+            </div>
+    <!-- page head end-->
+{% endblock %}
+
+{% block main_content %}
+    
+    
+    {% if search %}
+    <h1>{{ search[1] }}</h1>
+    {% endif %}
+
+{% block scritps %}
+<!--bootstrap-fileinput-master-->
+<script type="text/javascript" src="/js/bootstrap-fileinput-master/js/fileinput.js"></script>
+<script type="text/javascript" src="/js/file-input-init.js"></script>
+
+
+
+<!--bootstrap picker-->
+<script type="text/javascript" src="/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+
+
+<!--picker initialization-->
+<script src="/js/picker-init.js"></script>
+
+
+
+
+{% endblock %}
