@@ -16,61 +16,9 @@
     <link href="/css/style-responsive.css" rel="stylesheet">
 
     {#  chartkick  #}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['treemap']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
-          ['Global',    null,                 0,                               0],
-          ['听云',       'Global',             0,                               0],
-          ['America',   'Global',             0,                               0],
-          ['Europe',    'Global',             0,                               0],
-          ['app',       '听云',             1,                               4],
-          ['ba',       '听云',             1,                               4],
-          ['web',       '听云',             1,                               4],
-          ['Asia',      'Global',             0,                               0],
-          ['Australia', 'Global',             0,                               0],
-          ['Africa',    'Global',             0,                               0],
-
-          ['Brazil',    'America',            11,                              10],
-          ['USA',       'America',            52,                              31],
-          ['Mexico',    'America',            24,                              12],
-          ['Canada',    'America',            16,                              -23],
-          ['France',    'Europe',             42,                              -11],
-          ['Germany',   'Europe',             31,                              -2],
-          ['Sweden',    'Europe',             22,                              -13],
-          ['Italy',     'Europe',             17,                              4],
-          ['UK',        'Europe',             21,                              -5],
-          ['China',     'Asia',               36,                              4],
-          ['Japan',     'Asia',               20,                              -12],
-          ['India',     'Asia',               40,                              63],
-          ['Laos',      'Asia',               4,                               34],
-          ['Mongolia',  'Asia',               1,                               -5],
-          ['Israel',    'Asia',               12,                              24],
-          ['Iran',      'Asia',               18,                              13],
-          ['Pakistan',  'Asia',               11,                              -52],
-          ['Egypt',     'Africa',             21,                              0],
-          ['S. Africa', 'Africa',             30,                              43],
-          ['Sudan',     'Africa',             12,                              2],
-          ['Congo',     'Africa',             10,                              12],
-          ['Zaire',     'Africa',             8,                               10]
-        ]);
-
-        tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
-
-        tree.draw(data, {
-          minColor: '#f00',
-          midColor: '#ddd',
-          maxColor: '#0d0',
-          headerHeight: 20,
-          fontColor: 'black',
-          showScale: true
-        });
-
-      }
-    </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -114,7 +62,7 @@
                                 </span>
                             </header>
                             <div class="panel-body">
-                                <div id="chart_div" style="width: 900px; height: 500px;"></div>
+                                <div id="container"></div>
                             </div>
 
                         </section>
@@ -128,7 +76,108 @@
 
             </div>
 
+    <script>
+    var data = {
+        '听云测试': {
+            'APP': {
+                'sa':{
+                    'Communicable & other Group I': '89',
+                    'Injuries': '89',
+                    'Noncommunicable diseases': '89'
+                },
+            },
+        },
+        'Europe': {
+            'Hungary': {
+                'Communicable & other Group I': '16.8',
+                'Noncommunicable diseases': '602.8',
+                'Injuries': '44.3'
+            },
+        }
+    },
+    points = [],
+    regionP,
+    regionVal,
+    regionI = 0,
+    countryP,
+    countryI,
+    causeP,
+    causeI,
+    region,
+    country,
+    cause,
+    causeName = {
+        'Communicable & other Group I': 'Communicable diseases',
+        'Noncommunicable diseases': 'Non-communicable diseases',
+        'Injuries': 'Injuries'
+    };
 
+for (region in data) {
+    if (data.hasOwnProperty(region)) {
+        regionVal = 0;
+        regionP = {
+            id: 'id_' + regionI,
+            name: region,
+            color: Highcharts.getOptions().colors[regionI]
+        };
+        countryI = 0;
+        for (country in data[region]) {
+            if (data[region].hasOwnProperty(country)) {
+                countryP = {
+                    id: regionP.id + '_' + countryI,
+                    name: country,
+                    parent: regionP.id
+                };
+                points.push(countryP);
+                causeI = 0;
+                for (cause in data[region][country]) {
+                    if (data[region][country].hasOwnProperty(cause)) {
+                        causeP = {
+                            id: countryP.id + '_' + causeI,
+                            name: causeName[cause],
+                            parent: countryP.id,
+                            value: Math.round(+data[region][country][cause])
+                        };
+                        regionVal += causeP.value;
+                        points.push(causeP);
+                        causeI = causeI + 1;
+                    }
+                }
+                countryI = countryI + 1;
+            }
+        }
+        regionP.value = Math.round(regionVal / countryI);
+        points.push(regionP);
+        regionI = regionI + 1;
+    }
+}
+Highcharts.chart('container', {
+    series: [{
+        type: 'treemap',
+        layoutAlgorithm: 'squarified',
+        allowDrillToNode: true,
+        animationLimit: 1000,
+        dataLabels: {
+            enabled: false
+        },
+        levelIsConstant: false,
+        levels: [{
+            level: 1,
+            dataLabels: {
+                enabled: true
+            },
+            borderWidth: 3
+        }],
+        data: points
+    }],
+    subtitle: {
+        text: 'Click points to drill down. Source: <a href="http://apps.who.int/gho/data/node.main.12?lang=en">WHO</a>.'
+    },
+    title: {
+        text: 'Global Mortality Rate 2012, per 100 000 population'
+    }
+});
+    </script>
 
 <!--body wrapper end-->
 {% endblock %}
