@@ -49,41 +49,42 @@ for i in mod:
 
 
 
-import os
+
 import paramiko
-import datetime
+from stat import S_ISDIR
 
-path = '/root'
-ip = '172.16.7.52'
-client = paramiko.Transport((ip,22))
+
+
+client = paramiko.Transport(('10.20.100.86',50289))
 # client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-client.connect(username='root',password='cutv@sobey2016')
+client.connect(username='root',password='1vu~Teh*(*eELuK23yd(YTG')
 sftp = paramiko.SFTPClient.from_transport(client)
-files = sftp.listdir_attr(path)
-print(files)
+# def find_filename(remote_file=0,remote_dir=0):
+#     if remote_dir == 0:
+#         path = '/data/vod7'
+#     else:
+#         path = remote_dir
+#     files = sftp.listdir_attr(path)
+#     for f in files:
+#         filename = path + '/' + f.filename
+#         if list(f.filename)[0] is ".":
+#             pass
+#         elif S_ISDIR(f.st_mode):
+#             find_filename(remote_file,filename)
+#             print(filename)
+#         elif remote_file in f.filename:
+#             # print(filename)
+#             pass
+# find_filename(remote_file='G14efeekgfimhigmjmnmcv_1b.jpg')
 
-[<SFTPAttributes: [ size=18 uid=0 gid=0 mode=0o100644 atime=1489741977 mtime=1388283991 ]>,
-<SFTPAttributes: [ size=176 uid=0 gid=0 mode=0o100644 atime=1498125571 mtime=1388283991 ]>,
-<SFTPAttributes: [ size=176 uid=0 gid=0 mode=0o100644 atime=1498125571 mtime=1388283991 ]>,
-<SFTPAttributes: [ size=100 uid=0 gid=0 mode=0o100644 atime=1388283991 mtime=1388283991 ]>,
-<SFTPAttributes: [ size=129 uid=0 gid=0 mode=0o100644 atime=1388283991 mtime=1388283991 ]>,
-<SFTPAttributes: [ size=954 uid=0 gid=0 mode=0o100600 atime=1466667773 mtime=1466667773 ]>,
-<SFTPAttributes: [ size=3412 uid=0 gid=0 mode=0o100600 atime=1498125832 mtime=1498125687 ]>,
-<SFTPAttributes: [ size=27 uid=0 gid=0 mode=0o40755 atime=1489768815 mtime=1489740080 ]>,
-<SFTPAttributes: [ size=17 uid=0 gid=0 mode=0o40755 atime=1489768815 mtime=1480926483 ]>,
-<SFTPAttributes: [ size=18 uid=0 gid=0 mode=0o40740 atime=1489768815 mtime=1489737919 ]>,
-<SFTPAttributes: [ size=24 uid=0 gid=0 mode=0o40700 atime=1489905417 mtime=1489905441 ]>,
-<SFTPAttributes: [ size=16 uid=0 gid=0 mode=0o40755 atime=1489909691 mtime=1489909691 ]>,
-<SFTPAttributes: [ size=34 uid=0 gid=0 mode=0o40755 atime=1498128371 mtime=1498128370 ]>,
-<SFTPAttributes: [ size=20 uid=0 gid=0 mode=0o100644 atime=1498127614 mtime=1498127594 ]>,
-<SFTPAttributes: [ size=3895 uid=0 gid=0 mode=0o100600 atime=1498128370 mtime=1498128370 ]>]
+
+a = [1]
+if a:
+    print('yes')
+else:print('no')
 
 
-# print(files)
-# for f in files:
-#     if list(f)[0] is ".":
-#         pass
-    # else:print(f)
+
 
 
 

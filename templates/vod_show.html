@@ -1,0 +1,22 @@
+{% extends 'vod_find.html' %}
+
+{% block vod_find %}
+    <div class="wrapper">
+    <div class="row center">
+    <div class="col-lg-6">
+        <div class="login-wrap">
+            <table class="table text-center">
+            {% for file in filelist %}
+                <tr class="warning">
+                    <td>{{ file }}</td>
+                    <td>{{ result }}</td>
+                </tr>
+
+            {% endfor %}
+            </table>
+
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

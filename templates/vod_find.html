@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Template">
+    <meta name="keywords" content="admin dashboard, admin, flat, flat ui, ui kit, app, web app, responsive">
+    <link rel="shortcut icon" href="/img/ico/favicon.png">
+    <title>CODECLASSROOM.COM - Lock</title>
+
+    <!-- Base Styles -->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+  <body class="login-body">
+
+    <h2 class="form-heading lock">
+        <span></span>
+        <span class="u-name">节目查询</span>
+    </h2>
+
+    <div class="container lock-row">
+        <form class="form-signin" action="{{ url_for('tools.vod_post') }}" method="post">
+            <div class="login-wrap">
+                <div class="user-avatar text-center">
+                    <a href="http://10.20.100.86/tools/decoder.swf" class="text-success">PID查询</a>
+                </div>
+                <input type="text" class="form-control text-center" id="vod_url" name="vod_url" placeholder="请输入PID地址">
+                <button class="btn btn-lg btn-success btn-block" type="submit">查询</button>
+            </div>
+        </form>
+        {% block vod_find %}
+
+        {% endblock %}
+    </div>
+
+  </body>
+</html>
