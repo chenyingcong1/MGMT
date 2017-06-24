@@ -116,21 +116,22 @@ def chart_cdn():
 
 @chart.route('/cdn/test/')
 def chart_test():
-    lis = str([['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
- ['Global', '', 0, 0],
- ['听云监测', 'Global', 0, 0],
- ['听云监测-BA', '听云监测', 5, 5],
- ['172.16.101.31', '听云监测-BA', 10, 10],
- ['172.16.101.32', '听云监测-BA', 5, 5],
- ['听云监测1', 'Global', 0, 0],
- ['听云监测1-BA', '听云监测1', 5, 5],
- ['172.16.101.33', '听云监测1-BA', 10, 10],
- ['听云监测1-APP', '听云监测1', 5, 5],
- ['172.16.101.34', '听云监测1-APP', 10, 10],
- ['听云监测2', 'Global', 0, 0],
- ['听云监测2-APP', '听云监测2', 5, 5],
- ['172.16.101.35', '听云监测2-APP', 10, 10],
- ['172.16.101.36', '听云监测2-APP', 5, 5]])
-    return render_template('test3.html',lis=lis)
+ #    lis = str([['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
+ # ['Global', '', 0, 0],
+ # ['听云监测', 'Global', 0, 0],
+ # ['听云监测-BA', '听云监测', 5, 5],
+ # ['172.16.101.31', '听云监测-BA', 10, 10],
+ # ['172.16.101.32', '听云监测-BA', 5, 5],
+ # ['听云监测1', 'Global', 0, 0],
+ # ['听云监测1-BA', '听云监测1', 5, 5],
+ # ['172.16.101.33', '听云监测1-BA', 10, 10],
+ # ['听云监测1-APP', '听云监测1', 5, 5],
+ # ['172.16.101.34', '听云监测1-APP', 10, 10],
+ # ['听云监测2', 'Global', 0, 0],
+ # ['听云监测2-APP', '听云监测2', 5, 5],
+ # ['172.16.101.35', '听云监测2-APP', 10, 10],
+ # ['172.16.101.36', '听云监测2-APP', 5, 5]])
+ #    return render_template('test3.html',lis=lis)
+    return render_template('test4.html')
 
 
