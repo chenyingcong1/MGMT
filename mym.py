@@ -1,5 +1,6 @@
 import os
 from flask import Flask,render_template,Blueprint
+from flask_cors import *
 
 
 from app.chart import chart
@@ -9,6 +10,7 @@ from app.tools import tools
 import chartkick
 
 app = Flask(__name__, static_url_path='')
+CORS(app, supports_credentials=True)
 app.debug = True
 
 DATABASE_URL = os.path.realpath('./db/contract.db')

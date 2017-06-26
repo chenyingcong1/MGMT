@@ -1,25 +1,21 @@
-{% extends 'index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/jqwidgets/jqxcore.js"></script>
+    <script src="/js/jqwidgets/jqxtooltip.js"></script>
+    <script src="/js/jqwidgets/jqxtreemap.js"></script>
+    <link rel="stylesheet" href="/js/jqwidgets/styles/jqx.base.css" />
 
-
-{% block stylesheets %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
-<script src="/js/chartkick.js"></script>
-{% endblock %}
-
-{% block page_head %}
-
-{% endblock %}
-
-{% block main_content %}
-
-
-{% column_chart data with min=400 max=1000 %}
-
-
-{% endblock %}
-
-{% block scritps %}
-
-
-
-{% endblock %}
+</head>
+<body>
+    <div id="treemap"></div>
+    <script>
+$('#treemap').jqxTreeMap({
+    width: 600,
+    height: 600,
+    source: data
+});
+</script>
+</body>
+</html>

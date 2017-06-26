@@ -1,0 +1,24 @@
+{
+  "name": "jquery-treemap",
+  "version": "0.1.0",
+  "author": "Rex McConnell <rex@rexmac.com>",
+  "description": "A (simple) jQuery plugin for generating treemaps",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rexmac/jquery-treemap.git"
+  },
+  "keywords": [
+    "treemap",
+    "jquery"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "grunt-contrib-jshint": "0.3.x",
+    "grunt-contrib-uglify": "0.2.x"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
