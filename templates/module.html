@@ -1,66 +1,14 @@
 {% extends 'index.html' %}
 
 {% block stylesheets %}
-<!--dropzone-->
+    <!--dropzone-->
     <link href="/css/dropzone.css" rel="stylesheet">
 
     <!--common style-->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet">
 
-    <!--chartkick-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['treemap']});
-      google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'ID');
-      data.addColumn('string', 'Parent');
-      data.addColumn('number', 'Number Of Lines');
-      data.addRows([
-{#        ['cutv', '', 0],#}
-{#          ['听云监测', 'Global', 0],#}
-{#          ['BA', '听云监测',null],#}
-{#          ['内网IP:172.16.101.31:80-外网IP113.105.76.194:80', 'BA', 20],#}
-        ['Shakespeare', null, 0],
-
-        ['Comedies', 'Shakespeare', null],
-        ['Tragedies', 'Shakespeare', null],
-        ['Histories', 'Shakespeare', null],
-
-        ['As You Like It', 'Comedies', null],
-        ['Adam', 'As You Like It', 10],
-        ['Amiens', 'As You Like It', 10],
-        ['Audrey', 'As You Like It', 12],
-        ['Celia', 'As You Like It', 108],
-        ['Charles', 'As You Like It', 8],
-
-              ]);
-
-      var tree = new google.visualization.TreeMap(document.getElementById('chart_div'));
-
-      var options = {
-        highlightOnMouseOver: true,
-        maxDepth: 1,
-        maxPostDepth: 2,
-        minHighlightColor: '#8c6bb1',
-        midHighlightColor: '#9ebcda',
-        maxHighlightColor: '#edf8fb',
-        minColor: '#009688',
-        midColor: '#f7f7f7',
-        maxColor: '#ee8100',
-        headerHeight: 15,
-        showScale: true,
-        height: 500,
-        useWeightedAverageForAggregation: true
-      };
-
-        tree.draw(data, options);
-
-      }
-    </script>
 
 
 
@@ -168,18 +116,11 @@
                                                             </div>
                                                         </div>
                                                     </form>
-
-
-
-
                                                     </section>
                                                 </div>
 
 
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
                                         </div>
                                     </div>
                                 </div>
@@ -191,13 +132,30 @@
 
                     <!--collapse start-->
 
-                    <div class="panel-group m-bot20" id="accordion">
-                        <div class="panel-body">
-                            <div id="chart_div" style="width: 900px; height: 500px;"></div>
-                        </div>
-
-
-                    </div>
+                    <table class="table table-striped custom-table table-hover">
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-bookmark-o"></i> 业务名称</th>
+                                <th class="hidden-xs"><i class="fa fa-building-o"></i> 服务名称</th>
+                                <th><i class="fa fa-bar-chart-o"></i> 服务器IP</th>
+                                <th><i class="fa fa-line-chart"></i> 服务器端口</th>
+                                <th><i class=" fa fa-edit"></i> 公网IP</th>
+                                <th class="hidden-xs"><i class="fa fa-cogs"></i>公网端口</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for mod in mods %}
+                            <tr>
+                                <td>{{ mod[0] }}</td>
+                                <td>{{ mod[1] }}</td>
+                                <td>{{ mod[2]|safe }}</td>
+                                <td>{{ mod[3] }}</td>
+                                <td>{{ mod[4]|safe }}</td>
+                                <td>{{ mod[5] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
                     <!--collapse end-->
                 </section>

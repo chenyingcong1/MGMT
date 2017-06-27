@@ -73,13 +73,13 @@
                     <li class="menu-list"><a href=""><i class="fa fa-bar-chart-o"></i> <span>数据查询</span></a>
                         <ul class="child-list">
                             <li><a href="{{ url_for('chart.cdntable') }}"> CDN数据</a></li>
-{#                            <li><a href="{{ url_for('chart.chart') }}"> 表单查询</a></li>#}
+
                         </ul>
                     </li>
                     <li class="menu-list"><a href=""><i class="fa fa-cubes"></i> <span>业务模块</span></a>
                         <ul class="child-list">
-                            <li><a href="#">创建模块</a></li>
-{#                            <li><a href="{{ url_for('chart.chart') }}"> 表单查询</a></li>#}
+                            <li><a href="{{ url_for('BSmodule.module_list') }}">业务模块</a></li>
+
                         </ul>
                     </li>
                     <li>
