@@ -44,10 +44,11 @@
     <!--body wrapper start-->
     <div class="wrapper">
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <section class="panel">
                     <div>
                         <header class="panel-heading head-border">
+
                             <td class="hidden-xs">
                             <a data-toggle="modal" data-target="#addmodule" class="btn btn-success btn-xs" >添加模块</a>
                             <!-- Modal -->
@@ -66,13 +67,6 @@
                                                             文件管理
                                                         </header>
                                                         <form action="{{ url_for('BSmodule.post_module') }}" method="post" class="form-horizontal"  role="form" >
-                                                            <div class="form-group">
-                                                                <label for="modulename" class="col-lg-3 col-sm-3 control-label">模块名称</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="modulename" name="modulename" placeholder="">
-                                                                    <p class="help-block"></p>
-                                                                </div>
-                                                            </div>
                                                             <div class="form-group">
                                                                 <label for="servername" class="col-lg-3 col-sm-3 control-label">服务名称</label>
                                                                 <div class="col-lg-4">
@@ -125,8 +119,15 @@
                                     </div>
                                 </div>
                             </div>
+
                             <!-- modal -->
                             </td>
+                            <div class="btn-group">
+                                <form class="form-search">
+                                    <input type="text" class="input-small search-query" placeholder="查找...">
+                                    <button type="submit" class="btn btn-success btn-xs"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
                         </header>
                     </div>
 
@@ -135,7 +136,6 @@
                     <table class="table table-striped custom-table table-hover">
                         <thead>
                             <tr>
-                                <th><i class="fa fa-bookmark-o"></i> 业务名称</th>
                                 <th class="hidden-xs"><i class="fa fa-building-o"></i> 服务名称</th>
                                 <th><i class="fa fa-bar-chart-o"></i> 服务器IP</th>
                                 <th><i class="fa fa-line-chart"></i> 服务器端口</th>
@@ -147,11 +147,10 @@
                         {% for mod in mods %}
                             <tr>
                                 <td>{{ mod[0] }}</td>
-                                <td>{{ mod[1] }}</td>
-                                <td>{{ mod[2]|safe }}</td>
-                                <td>{{ mod[3] }}</td>
-                                <td>{{ mod[4]|safe }}</td>
-                                <td>{{ mod[5] }}</td>
+                                <td>{{ mod[1]|safe }}</td>
+                                <td>{{ mod[2] }}</td>
+                                <td>{{ mod[3]|safe }}</td>
+                                <td>{{ mod[4] }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

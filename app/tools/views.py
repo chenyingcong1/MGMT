@@ -1,5 +1,6 @@
 import os
 import paramiko
+import sqlite3
 from stat import S_ISDIR
 
 from flask import request, render_template, redirect, url_for, send_from_directory,make_response
@@ -45,5 +46,60 @@ def vod_post():
 
 
 
-# @tools.route('vod_show')
-# def vod_show():
+@tools.route('/show_ip/',methods=['GET','POST'])
+def show_ip():
+    if request.args.get('name'):
+        name = request.args.get('name')
+        mask = request.args.get('mask')
+        conn = sqlite3.connect(DATABASE_URL)
+        c = conn.cursor()
+        sql = "select * from {}".format(name)
+
+        tablelis = c.execute(sql)
+        conn.commit()
+        return render_template('iptable.html', name=name, mask=mask, tablelis=tablelis)
+    else:
+        conn = sqlite3.connect(DATABASE_URL)
+        c = conn.cursor()
+        sql = "select * from IPsubnet"
+        lis = c.execute(sql)
+        conn.commit()
+        return render_template('iptable.html', lis=lis)
+
+
+
+
+@tools.route('/ip_post/',methods=['POST'])
+def ip_post():
+    if request.method == 'POST':
+        netname = request.form.get('netname')
+        netmask = str(request.form.get('netmask'))
+
+
+    conn = sqlite3.connect(DATABASE_URL)
+    c = conn.cursor()
+    sql1 = "insert into IPsubnet (name,netmask) values (?,?)"
+    c.execute(sql1,(netname,netmask))
+    conn.commit()
+    sql2 = """CREATE TABLE {}(IP TEXT);""".format(netname)
+    c.execute(sql2)
+    conn.commit()
+
+
+    cut = netmask.split('/')[0].split('.')
+
+    for i in range(1,(2**(32-int(netmask.split('/')[1]))-1)):
+        ip = str(cut[0]+'.'+cut[1]+'.'+cut[2]+'.'+str(int(cut[3])+i))
+        sql3 = """insert into {} (IP) values (?)""".format(netname)
+        c.execute(sql3,(ip,))
+        conn.commit()
+    conn.close()
+
+
+    return redirect(url_for('tools.show_ip'))
+
+
+@tools.route('/monitor/')
+def monitor():
+    return render_template('test3.html')
+
