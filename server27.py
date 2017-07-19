@@ -1,10 +1,10 @@
-import socket, time
+import socket, time, os
 def Server():
     locakIP = socket.gethostbyname(socket.gethostname())
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind((locakIP,4000))
     sock.listen(10)
-    print("server start")
+    print"server start"
     # sock.settimeout(8)
     while 1:
         try:
@@ -14,15 +14,18 @@ def Server():
                 if not data:
                     break
                 elif data == 'register':
-                    print('Client:'+address[0]+' connect success')
+                    print'Client:'+address[0]+' connect success'
                     connection.send("register success".encode())
+                elif data == 'shutdown':
+                    connection.send("shutdown now".encode())
+                    os.system('shutdown -s -t 0')
                 else:
                     if data:
                         connection.send('ok'.encode())
-                        print(data)
+                        print data
             connection.close()
         except ConnectionResetError as e:
-            print(e,)
+            print e
             time.sleep(4)
 if __name__ == '__main__':
     Server()

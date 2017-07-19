@@ -119,6 +119,11 @@ def chart_cdn():
 def chart_test():
 
 
-    return render_template('test3.html')
+    return render_template('test4.html')
+
+@chart.route('/cdn/content/')
+def content():
+    return str(datetime.now())
+
 
 

@@ -2,7 +2,7 @@ import socket, time, psutil, os
 
 def Connect():
     locakIP = socket.gethostbyname(socket.gethostname())
-    remoteIP = '192.168.108.16'
+    remoteIP = '192.168.20.14'
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(5)
     while 1:
@@ -21,7 +21,7 @@ def Client():
             recv = sock.recv(1024).decode()
             if 'success' in recv:
                 while 1:
-                    ent = str(psutil.virtual_memory().percent) +'%'
+                    ent = input()
                     sock.send(ent.encode())
                     res = sock.recv(1024).decode()
                     print(res)

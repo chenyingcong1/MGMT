@@ -1,6 +1,9 @@
 import os
 import paramiko
 import sqlite3
+from datetime import datetime
+import socket
+import time
 from stat import S_ISDIR
 
 from flask import request, render_template, redirect, url_for, send_from_directory,make_response
@@ -101,5 +104,35 @@ def ip_post():
 
 @tools.route('/monitor/')
 def monitor():
-    return render_template('test3.html')
+    locakIP = socket.gethostbyname(socket.gethostname())
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.bind((locakIP, 4000))
+    sock.listen(10)
+    iptable = []
+    while 1:
+        try:
+            connection, address = sock.accept()
+            while 1:
+                data = connection.recv(1024).decode()
+                if not data:
+                    break
+                elif data == 'register':
+                    iptable.append(address[0])
+                    connection.send("register success".encode())
+                else:
+                    if data:
+                        connection.send('ok'.encode())
+        except ConnectionResetError as e:
+            print(e,)
+            time.sleep(4)
+    pid = [1,2]
+    return render_template('poweroff.html',ip=iptable,pid =pid)
+
+@tools.route('/monitor/time/')
+def content():
+    return str(datetime.now())
+
+# @tools.route('/monitor/CPU/',methods = ['GET','POST'])
+# def get_cpu():
+#     if request.method == 'GET':
 

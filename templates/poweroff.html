@@ -1,0 +1,88 @@
+{% extends 'index.html' %}
+
+
+{% block stylesheets %}
+    <!--common style-->
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style-responsive.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+{% endblock %}
+
+{% block page_head %}
+    <!-- page head start-->
+    <div class="page-head">
+                <h3 class="m-b-less">
+                    查看合同
+                </h3>
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+                <div class="state-information">
+                    <ol class="breadcrumb m-b-less bg-less">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">合同管理</a></li>
+                        <li class="active">数据列表</li>
+                    </ol>
+                </div>
+            </div>
+    <!-- page head end-->
+{% endblock %}
+
+{% block main_content %}
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+            <header class="panel-heading head-border">
+                Custom Table
+            </header>
+            <table class="table table-striped custom-table table-hover">
+                <thead>
+                <tr>
+                    <th>Remote IP</th>
+                    <th>Last</th>
+                    <th>Power</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>192.168.108.16</td>
+                        <td id=1></td>
+                    </tr>
+
+
+
+
+                </tbody>
+            </table>
+            </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scritps %}
+<script src="/js/jquery-1.10.2.min.js"></script>
+<!--Nice Scroll-->
+<script src="/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            var update = setInterval(function () {
+                {% for foo in pid %}
+                    $("#{{ foo }}").load('/tools/monitor/time/');
+                {% endfor %}
+
+            },1000);
+
+
+        });
+    </script>
+
+
+{% endblock %}

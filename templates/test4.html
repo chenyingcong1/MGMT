@@ -1,60 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+{% extends 'index.html' %}
+
+{% block stylesheets %}
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+{% endblock %}
+
+{% block page_head %}
+
+{% endblock %}
+
+{% block main_content %}
+    <div class="panel-body">
+        <div class="row">
+        {% for foo in ip %}
+            <div class="col-md-8">
 
 
+            <span class="label label-success ">{{ foo }}</span>
 
-</head>
-<body>
+        {% endfor %}
+            </div>
 
-<div id="treemap"></div>
+        </div>
+    </div>
 
-<script>
-  var data = [{
-     label: 'Chrome',
-     value: 44.06,
-     color: "#37c837"
- }, {
-     label: 'Internet Explorer',
-     value: 22.08,
-     color: "#0066ff"
- }, {
-     label: 'Firefox',
-     value: 18.17,
-     color: "#ed7b0f"
- }, {
-     label: 'Others',
-     value: 9.07,
-     color: "#818181"
- }, {
-     label: 'Opera',
-     value: 3.38,
-     color: "#9a0900"
- }, {
-     label: 'Safari',
-     value: 3.24,
-     color: "#4dbff1"
- }];
- $('#treemap').jqxTreeMap({
-     width: 400,
-     height: 300,
-     source: data,
-     renderCallbacks: {
-         '*': function (element, data) {
-             element.css({
-                 color: '#ffffff'
-             });
-             element.html('<span style="font-size: 11px;" class="jqx-treemap-label">' + data.label + ', ' + data.value + '%</span>');
-             return true;
-         }
-     }
- });
-</script>
+    <div id="content"></div>
+
+    <input type="button" onclick="clearInterval(document.update)" value="stop">
+{% endblock %}
+
+{% block scritps %}
+    <script>
+        $(document).ready(function () {
+            var update = setInterval(function () {
+                $("#content").load('/tools/monitor/time/');
+            },1000);
 
 
-</body>
-</html>
+        });
+    </script>
+{% endblock %}
