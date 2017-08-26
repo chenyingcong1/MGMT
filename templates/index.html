@@ -23,6 +23,8 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/style-responsive.css" rel="stylesheet">
 
+    <link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% block stylesheets %}
     
     {% endblock %}
@@ -87,7 +89,7 @@
                     </li>
                     <li><a href="{{ url_for('tools.find_vod') }}"><i class="fa fa-home"></i> <span>节目删除</span></a></li>
                     <li><a href="{{ url_for('tools.show_ip') }}"><i class="fa fa-home"></i> <span>IP统计</span></a></li>
-                    <li><a href="{{ url_for('tools.monitor') }}"><i class="fa fa-power-off"></i> <span>Power off</span></a></li>
+                    <li><a href="{{ url_for('tools.password') }}" id="shutdown"><i class="fa fa-power-off"></i> <span>Power off</span></a></li>
 
 
                 </ul>
@@ -185,7 +187,6 @@
         </div>
         <!-- body content end-->
     </section>
-
 <!-- Placed js at the end of the document so the pages load faster -->
 <script src="/js/jquery-1.10.2.min.js"></script>
 <script src="/js/jquery-migrate.js"></script>
@@ -208,6 +209,7 @@
 
 <!--common scripts for all pages-->
 <script src="/js/scripts.js"></script>
+
 
 {% block scritps %}
 

@@ -4,13 +4,7 @@ from flask import render_template,request,redirect,url_for
 from datetime import datetime, date
 from app.chart import chart
 
-
-
-
-
-
 DATABASE_URL = os.path.realpath('./db/contract.db')
-
 
 @chart.route('/cdn/')
 def cdnchart():

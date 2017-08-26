@@ -3,6 +3,7 @@ import paramiko
 import sqlite3
 from datetime import datetime
 import socket
+import nmap
 import time
 from stat import S_ISDIR
 
@@ -104,33 +105,82 @@ def ip_post():
 
 @tools.route('/monitor/')
 def monitor():
-    locakIP = socket.gethostbyname(socket.gethostname())
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.bind((locakIP, 4000))
-    sock.listen(10)
-    iptable = []
-    while 1:
+    conn = sqlite3.connect(DATABASE_URL)
+    c = conn.cursor()
+    sql="select rowid,ip,team from ShutdownIP"
+    sql1="select DISTINCT team from ShutdownIP"
+    lis = c.execute(sql).fetchall()
+    team = c.execute(sql1).fetchall()
+    conn.commit()
+    return render_template('power.html',lis=lis,team=team)
+
+@tools.route('/monitor_add/',methods=['GET','POST'])
+def monitor_add():
+    if request.method == 'POST':
+        ip = request.form.get('ip')
+        team = request.form.get('team')
+    conn = sqlite3.connect(DATABASE_URL)
+    c = conn.cursor()
+    sql1 = "insert into ShutdownIP (ip,team) values (?,?)"
+    c.execute(sql1, (ip, team))
+    conn.commit()
+    return redirect(url_for('tools.monitor'))
+
+
+@tools.route('/shutdown/',methods=['GET','POST'])
+def shutdown():
+    if request.args.get('address'):
+        remoteIP = request.args.get('address')
         try:
-            connection, address = sock.accept()
-            while 1:
-                data = connection.recv(1024).decode()
-                if not data:
-                    break
-                elif data == 'register':
-                    iptable.append(address[0])
-                    connection.send("register success".encode())
-                else:
-                    if data:
-                        connection.send('ok'.encode())
-        except ConnectionResetError as e:
-            print(e,)
-            time.sleep(4)
-    pid = [1,2]
-    return render_template('poweroff.html',ip=iptable,pid =pid)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(1)
+            sock.connect((remoteIP, 4000))
+            sock.send('register'.encode())
+            recv = sock.recv(1024).decode()
+            if 'success' in recv:
+                while 1:
+                    ent = 'shutdown'
+                    sock.send(ent.encode())
+                    res = sock.recv(1024).decode()
+                    return redirect(url_for('tools.monitor'))
+            sock.close()
+        except Exception as e:
+            return str(e)
+
+
 
 @tools.route('/monitor/time/')
 def content():
     return str(datetime.now())
+
+@tools.route('/state/',methods=['GET','POST'])
+def state():
+    if request.method == 'POST':
+        ip = request.form.get('ip')
+        return "<i class='fa fa-check-square fa-lg'></i>"
+
+@tools.route('/password/',methods=['GET','POST'])
+def password():
+    if request.method == 'POST':
+        inputpassword = request.form.get('password')
+        if inputpassword == 'cutv.com':
+            return redirect(url_for('tools.monitor'))
+        else:
+            return render_template('password.html')
+    elif request.method == 'GET':
+        return render_template('password.html')
+        # nm = nmap.PortScanner()
+        # if nm.scan('{}'.format(ip), '22')['nmap']['scanstats']['downhosts'] == 1:
+        #     return 'down'
+        # elif nm.scan('{}'.format(ip), '22')['nmap']['scanstats']['downhosts'] == 0:
+        #     return 'up'
+        # return ip
+
+        # nm = nmap.PortScanner()
+        # if nm.scan('192.168.1.41', '22')['nmap']['scanstats']['downhosts'] == 1:
+        #     return 'down'
+        # elif nm.scan('192.168.1.41', '22')['nmap']['scanstats']['downhosts'] == 0:
+        #     return 'up'
 
 # @tools.route('/monitor/CPU/',methods = ['GET','POST'])
 # def get_cpu():

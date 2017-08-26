@@ -56,92 +56,92 @@
                         <section class="panel">
                             <header class="panel-heading ">
                                 <td class="hidden-xs">
-                            <a data-toggle="modal" data-target="#addmodule" class="btn btn-success btn-xs" >添加模块</a>
-                            <!-- Modal -->
-                            <div class="modal fade" id="addmodule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title">文件管理</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="wrapper">
-                                                <div class="row">
-                                                    <section class="panel">
-                                                        <header class="panel-heading">
-                                                            文件管理
-                                                        </header>
-                                                        <form action="{{ url_for('BSmodule.post_module') }}" method="post" class="form-horizontal"  role="form" >
-                                                            <div class="form-group">
-                                                                <label for="servername" class="col-lg-3 col-sm-3 control-label">服务名称</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="servername" name="servername" placeholder="">
-                                                                    <input type="hidden" class="form-control" id="mode" name="mode" value="add" >
-                                                                    <p class="help-block"></p>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="insideip" class="col-lg-3 col-sm-3 control-label">内网ip</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="insideip" name="insideip" placeholder="1.1.1.1,2.2.2.2">
-                                                                    <p class="help-block"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="insideport" class="col-lg-3 col-sm-3 control-label">内网端口</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="insideport" name="insideport" placeholder="80,443">
-                                                                    <p class="help-block"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="outsideip" class="col-lg-3 col-sm-3 control-label">外网ip</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="outsideip" name="outsideip" placeholder="1.1.1.1,2.2.2.2">
-                                                                    <p class="help-block"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="outsideport" class="col-lg-3 col-sm-3 control-label">外网端口</label>
-                                                                <div class="col-lg-4">
-                                                                    <input type="text" class="form-control" id="outsideport" name="outsideport" placeholder="80,443">
-                                                                    <p class="help-block"></p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-3 control-label col-lg-3" for="area">域</label>
-                                                                <div class="col-lg-4">
-                                                                    <select class="form-control m-b-10" id="area" name="area">
-                                                                        <option></option>
-                                                                        <option>CUTV</option>
-                                                                        <option>IDC</option>
-                                                                        <option>云平台</option>
-                                                                        <option>其他</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        <div class="form-group">
-                                                            <div class="col-lg-offset-3 col-lg-10">
-                                                                <button type="submit" class="btn btn-primary">提交</button>
-                                                                <input type="reset" class="btn btn-default" value="重置">
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    </section>
+                                    <a data-toggle="modal" data-target="#addmodule" class="btn btn-success btn-xs" >添加模块</a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addmodule" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">文件管理</h4>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <div class="wrapper">
+                                                        <div class="row">
+                                                            <section class="panel">
+                                                                <header class="panel-heading">
+                                                                    文件管理
+                                                                </header>
+                                                                <form action="{{ url_for('BSmodule.post_module') }}" method="post" class="form-horizontal"  role="form" >
+                                                                    <div class="form-group">
+                                                                        <label for="servername" class="col-lg-3 col-sm-3 control-label">服务名称</label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="text" class="form-control" id="servername" name="servername" placeholder="">
+                                                                            <input type="hidden" class="form-control" id="mode" name="mode" value="add" >
+                                                                            <p class="help-block"></p>
+                                                                        </div>
 
 
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="insideip" class="col-lg-3 col-sm-3 control-label">内网ip</label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="text" class="form-control" id="insideip" name="insideip" placeholder="1.1.1.1,2.2.2.2">
+                                                                            <p class="help-block"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="insideport" class="col-lg-3 col-sm-3 control-label">内网端口</label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="text" class="form-control" id="insideport" name="insideport" placeholder="80,443">
+                                                                            <p class="help-block"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="outsideip" class="col-lg-3 col-sm-3 control-label">外网ip</label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="text" class="form-control" id="outsideip" name="outsideip" placeholder="1.1.1.1,2.2.2.2">
+                                                                            <p class="help-block"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="outsideport" class="col-lg-3 col-sm-3 control-label">外网端口</label>
+                                                                        <div class="col-lg-4">
+                                                                            <input type="text" class="form-control" id="outsideport" name="outsideport" placeholder="80,443">
+                                                                            <p class="help-block"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label col-lg-3" for="area">域</label>
+                                                                        <div class="col-lg-4">
+                                                                            <select class="form-control m-b-10" id="area" name="area">
+                                                                                <option></option>
+                                                                                <option>CUTV</option>
+                                                                                <option>IDC</option>
+                                                                                <option>云平台</option>
+                                                                                <option>其他</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="form-group">
+                                                                    <div class="col-lg-offset-3 col-lg-10">
+                                                                        <button type="submit" class="btn btn-primary">提交</button>
+                                                                        <input type="reset" class="btn btn-default" value="重置">
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            </section>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- modal -->
-                            </td>
+                                    <!-- modal -->
+                                </td>
                                 <span class="tools pull-right">
                                     <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
                                     <a class="t-close fa fa-times" href="javascript:;"></a>

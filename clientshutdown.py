@@ -2,7 +2,7 @@ import socket, time, psutil, os
 
 def Connect():
     locakIP = socket.gethostbyname(socket.gethostname())
-    remoteIP = '192.168.20.14'
+    remoteIP = '192.168.112.22'
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(5)
     while 1:

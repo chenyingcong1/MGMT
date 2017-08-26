@@ -182,7 +182,7 @@ def delete_file(id, filename):
 def download_file(id,filename):
     path = os.getcwd() + '/upload/{}/'.format(id)
     response = make_response(send_from_directory(path, filename, as_attachment = True))
-    response.headers["Content-Disposition"] = "attachment; filename={}".format(filename.encode().decode('latin-1'))
+    response.headers["Content-Disposition"] = "attachment; filename*=utf-8''{}".format(filename.encode())
     return response
 
 

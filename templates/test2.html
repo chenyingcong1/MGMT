@@ -1,20 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/treemap.js"></script>
-    <script src="http://code.highcharts.com/modules/heatmap.js"></script>
+{% extends 'index.html' %}
 
-</head>
-<body>
-    <div id="treemap"></div>
-    <script>
-$('#treemap').jqxTreeMap({
-    width: 600,
-    height: 600,
-    source: data
-});
-</script>
-</body>
-</html>
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block page_head %}
+
+{% endblock %}
+
+{% block main_content %}
+
+    {% for li in lis %}
+        <p>{{ li }}</p>
+    {% endfor %}
+    <ul>
+
+        {% for l in lis %}
+            <li>{{ l }}</li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}
+
+{% block scritps %}
+
+
+
+
+{% endblock %}

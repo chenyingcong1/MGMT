@@ -1,14 +1,4 @@
-# import psutil
-# import os
-# p1=psutil.Process(os.getpid())
-#
-# print(str(psutil.virtual_memory().percent) +'%')
-# print(str(psutil.cpu_percent(0))+'%')
-# # print("percent: %.2f%%" % (p1.memory_percent()))
-#
-
-
-
-import time
-
-print(time.time())
+from datetime import datetime
+d1 = datetime(2017,3,16)
+d2= datetime(2017,8,25)
+print((d2-d1).days)

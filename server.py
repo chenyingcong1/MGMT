@@ -9,6 +9,7 @@ def Server():
     while 1:
         try:
             connection, address = sock.accept()
+            count =0
             while 1:
                 data = connection.recv(1024).decode()
                 if not data:
@@ -18,11 +19,13 @@ def Server():
                     connection.send("register success".encode())
                 else:
                     if data:
+                        count=count+1
                         connection.send('ok'.encode())
-                        print(data)
+                        print(data+str(count))
             connection.close()
         except ConnectionResetError as e:
-            print(e,)
+            count = count-1
+            print(e+str(count))
             time.sleep(4)
 if __name__ == '__main__':
     Server()

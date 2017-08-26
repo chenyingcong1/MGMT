@@ -41,6 +41,7 @@
             <header class="panel-heading head-border">
                 Custom Table
             </header>
+                <span id=1></span>
             <table class="table table-striped custom-table table-hover">
                 <thead>
                 <tr>
@@ -53,7 +54,8 @@
 
                     <tr>
                         <td>192.168.108.16</td>
-                        <td id=1></td>
+
+
                     </tr>
 
 
@@ -74,9 +76,7 @@
     <script>
         $(document).ready(function () {
             var update = setInterval(function () {
-                {% for foo in pid %}
-                    $("#{{ foo }}").load('/tools/monitor/time/');
-                {% endfor %}
+                    $("#1").load('/tools/monitor/time/');
 
             },1000);
 
